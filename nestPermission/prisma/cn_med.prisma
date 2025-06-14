@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./cn-med-client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("CN_MED_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model admin {
+  ID        Int      @id @default(autoincrement())
+  UserName  String   @unique(map: "username") @db.VarChar(200)
+  RoleID    Int      @default(0) @db.UnsignedInt
+  Sex       Boolean
+  Password  String   @db.VarChar(32)
+  Salt      String   @db.Char(8)
+  Telphone  String?  @db.VarChar(255)
+  Status    Int      @default(1) @db.UnsignedTinyInt
+  Dateline  Int      @db.UnsignedInt
+  LoginTime Int      @default(0) @db.UnsignedInt
+  LoginIP   String   @default("0.0.0.0") @db.VarChar(15)
+  PowerID   Boolean? @default(false)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model admin_actions {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  parent_id   Int     @default(0) @db.UnsignedInt
+  action_name String  @default("") @db.VarChar(32)
+  controller  String  @default("") @db.VarChar(32)
+  action      String  @default("") @db.VarChar(32)
+  desc        String  @db.VarChar(32)
+  status      Int     @default(1) @db.UnsignedTinyInt
+  orderby     Int?    @default(0) @db.SmallInt
+  navid       Int?
+  isManage    Boolean @default(false)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model admin_purview {
+  PurviewID Int    @id @default(autoincrement()) @db.UnsignedInt
+  Name      String @default("") @db.VarChar(32)
+  Purview   String @default("") @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model admin_role {
+  ID       Int    @id @default(autoincrement()) @db.UnsignedInt
+  RoleName String @default("") @db.VarChar(32)
+  Desc     String @default("") @db.VarChar(32)
+  AddTime  Int    @default(0) @db.UnsignedInt
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model admin_role_action {
+  role_id   Int @db.UnsignedInt
+  action_id Int @db.UnsignedInt
+
+  @@id([role_id, action_id])
+  @@index([action_id], map: "action_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model admin_role_purview {
+  RoleID  Int    @db.UnsignedInt
+  Purview String @default("") @db.VarChar(255)
+
+  @@id([RoleID, Purview])
+  @@index([Purview], map: "PurviewID")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model ancient {
+  ID      Int     @id
+  Name    String? @db.VarChar(255)
+  Author  String? @db.VarChar(255)
+  Dynasty String? @db.VarChar(50)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model illness_case {
+  ID         Int     @id
+  AID        Int?
+  Case       String? @db.VarChar(255)
+  Medication String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model medication {
+  ID   Int     @id
+  Name String? @db.VarChar(255)
+  Desc String? @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model centre_static_data {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique(map: "IDX_NAME") @db.VarChar(100)
+  desc       String   @db.VarChar(200)
+  updatetime Int
+  isEdit     Boolean? @default(false)
+  enabled    Boolean
+}

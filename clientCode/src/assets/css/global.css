@@ -1,0 +1,76 @@
+/* 消除浏览器默认边距 */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* 隐藏横向滚动条（可选） */
+body {
+  overflow-x: hidden;
+}
+
+/* 基础边框样式 */
+.border {
+  border: 1px solid var(--el-border-color);
+}
+.border-top {
+  border-top: 1px solid var(--el-border-color);
+}
+.border-right {
+  border-right: 1px solid var(--el-border-color);
+}
+.border-bottom {
+  border-bottom: 1px solid var(--el-border-color);
+}
+.border-left {
+  border-left: 1px solid var(--el-border-color);
+}
+
+/* 边框圆角 */
+.rounded {
+  border-radius: var(--el-border-radius-base);
+}
+.rounded-sm {
+  border-radius: var(--el-border-radius-small);
+}
+.rounded-lg {
+  border-radius: var(--el-border-radius-round);
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+
+/* 边框颜色 */
+.border-primary {
+  border-color: var(--el-color-primary);
+}
+.border-success {
+  border-color: var(--el-color-success);
+}
+.border-warning {
+  border-color: var(--el-color-warning);
+}
+.border-danger {
+  border-color: var(--el-color-danger);
+}
+.border-info {
+  border-color: var(--el-color-info);
+}
+
+/* 边框粗细 */
+.border-0 {
+  border-width: 0;
+}
+.border-1 {
+  border-width: 1px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-4 {
+  border-width: 4px;
+}
+.border-8 {
+  border-width: 8px;
+}

@@ -1,0 +1,17 @@
+mongodb: 'mongodb://MONGODB-SERVER:27017/tendoBackstage'
+logger:
+  winstonTransports:
+    dirname: 'logs'
+    filename: '%DATE%.log'
+    datePattern: 'YYYY-MM-DD'
+    zippedArchive: true
+    maxSize: '20m'
+    maxFiles: '14d'
+api:
+  AnalysisHost: 'http://nestAnalysis:3001'
+  MailHost: 'http://nestMail:3002'
+  DBLinkHost: 'http://nestDBLink:3003'
+jwt:
+  secret: 'l128dhuqwdqjd018e17hiai'
+  expiresIn: '1h'
+  expiresTime: 3600
